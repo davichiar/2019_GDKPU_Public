@@ -3,6 +3,8 @@ import picamera
 import RPi.GPIO as GPIO
 import datetime
 
+
+now = datetime.datetime.now()
 day=now.strftime('%Y-%m-%d,%HH%MM%S')
 
 GPIO.setmode(GPIO.BCM)
