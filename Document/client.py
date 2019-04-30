@@ -12,6 +12,7 @@ def getFileFromServer(filename):
  
         data = sock.recv(1024)
         if not data:
+            print('파일[%s]: 서버에 존재하지 않거나 전송중 오류발생' %filename)
             return
  
         with open('download/' + filename, 'wb') as f:
@@ -22,6 +23,8 @@ def getFileFromServer(filename):
                     data = sock.recv(1024)
             except Exception as e:
                 print(e)
-  
+ 
+    print('파일[%s] 전송종료. 전송량 [%d]' %(filename, data_transferred))
+ 
 filename = input('다운로드 받은 파일이름을 입력하세요:')
 getFileFromServer(filename)
