@@ -22,8 +22,6 @@ def getFileFromServer(filename):
                     data = sock.recv(1024)
             except Exception as e:
                 print(e)
- 
-    print('파일[%s] 전송종료. 전송량 [%d]' %(filename, data_transferred))
- 
+  
 filename = input('다운로드 받은 파일이름을 입력하세요:')
 getFileFromServer(filename)
