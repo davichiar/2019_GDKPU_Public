@@ -1,20 +1,17 @@
 import time
 import picamera
-import RPi.GPIO as GPIO
 import datetime
-
+import os
 
 now = datetime.datetime.now()
 day=now.strftime('%Y-%m-%d,%HH%MM%S')
 
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(17,GPIO.IN,GPIO.PUD_UP)
-
-with picamera.PiCamera() as camera:
-    camera.start_preview()
-    
-    while true:
-        GPIO.wait_for_edge(17,GPIO.FALLING)
-        time.sleep(10)
+path=os.getenv("HOME")+""  #adjust path for location of this program
+with picamera.PiCamera() as picam:
+    picam.rotation=90 #adjust as necessary
+    picam.start_preview()
+    while True:
+        time.sleep(5)
         camera.capture('/home/pi/',nowDatetime,'.jpg')
-    camera.stop_preview()
+    picam.stop_preview()
+    picam.close()
